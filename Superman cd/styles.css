@@ -1,0 +1,299 @@
+/* General styling for full-screen background */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Bangers', sans-serif;
+    color: white;
+    background: url('why-is-it-so-tricky-to-adapt-superman-to-the-big-screen.png') no-repeat center center fixed;
+    background-size: cover;
+    overflow-y: auto; /* Allow vertical scrolling */
+}
+
+
+/* Container holding all countdowns */
+.countdown-container {
+    display: flex;
+    justify-content: center;
+    gap: 60px;
+    margin-top: 25vh;
+    z-index: 10;
+}
+
+/* Individual location countdowns */
+.countdown-location {
+    text-align: center;
+}
+
+/* Style for the location name */
+.location-name {
+    font-size: 24px;
+    color: yellow;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+/* Neon effect for countdown numbers */
+.neon-text {
+    font-size: 72px;
+    font-weight: bold;
+    color: #d30707;
+    text-shadow: 
+        0 0 10px #003cff,
+        0 0 20px #0026ff,
+        0 0 30px #0004ff,
+        0 0 40px #ff5500,
+        0 0 70px #ff5500,
+        0 0 80px #ff5500,
+        0 0 100px #ff5500,
+        0 0 150px #ff5500;
+    animation: neon-grow 1s infinite alternate;
+}
+
+/* Responsive Design for Smaller Screens */
+@media (max-width: 768px) {
+    .countdown-container {
+        flex-direction: column; /* Stack countdowns vertically */
+        align-items: center;
+        gap: 40px; /* Adjust gap between stacked items */
+    }
+
+    .location-name {
+        font-size: 18px; /* Reduce font size for location names */
+    }
+
+    .neon-text {
+        font-size: 48px; /* Reduce font size for countdown numbers */
+    }
+
+    #play-audio {
+        padding: 8px 16px;
+        font-size: 14px; /* Adjust button font size */
+    }
+}
+
+/* Play Button for Audio */
+.audio-controls button,
+#play-audio {
+    background-color: #d30707; /* Superman red */
+    color: #ffffff; /* White text */
+    border: none;
+    padding: 12px 24px;
+    font-size: 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: 'Bangers', sans-serif; /* Comic-style font */
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3); /* Depth effect */
+    text-transform: uppercase; /* Stylish uppercase text */
+    transition: all 0.3s ease-in-out; /* Smooth hover transition */
+    position: fixed; /* Fix the button at a specific position */
+    top: 20px; /* Distance from the top */
+    left: 20px; /* Distance from the left */
+    z-index: 1000; /* Ensure it's on top of other elements */
+}
+
+.audio-controls button:hover,
+#play-audio:hover {
+    background-color: #a30606; /* Darker red for hover effect */
+    transform: scale(1.05); /* Slightly enlarge on hover */
+    box-shadow: 0 8px 14px rgba(0, 0, 0, 0.4); /* Enhanced shadow on hover */
+}
+
+.audio-controls button:active,
+#play-audio:active {
+    background-color: #850505; /* Even darker red on click */
+    transform: scale(0.95); /* Shrink slightly when clicked */
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3); /* Less shadow when clicked */
+}
+
+/* Responsive Design for Smaller Screens */
+@media (max-width: 768px) {
+    #play-audio {
+        padding: 10px 20px;
+        font-size: 16px; /* Adjusted font size */
+        border-radius: 6px; /* Slightly smaller border radius */
+        top: 10px; /* Adjust top positioning for smaller screens */
+        left: 10px; /* Adjust left positioning for smaller screens */
+    }
+}
+
+/* Footer styling */
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    font-size: 14px;
+    z-index: 999;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.footer img {
+    max-height: 25px;
+}
+
+/* Responsive Footer for Smaller Screens */
+@media (max-width: 768px) {
+    .footer {
+        font-size: 12px;
+        padding: 8px 0;
+    }
+
+    .footer img {
+        max-height: 20px;
+    }
+}
+
+/* Superman Credit Highlight */
+.superman-credit {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #ffdc00; /* Bright yellow background */
+    color: #00274d; /* Superman blue for text */
+    padding: 10px 20px;
+    border: 2px solid #ff0000; /* Superman red border */
+    border-radius: 8px; /* Rounded corners */
+    font-family: Arial, sans-serif; /* Clean and readable font */
+    font-size: 14px;
+    font-weight: bold;
+    text-align: right;
+    z-index: 1000; /* Ensure it stays on top of other elements */
+}
+
+/* Responsive Design for Smaller Screens */
+@media (max-width: 768px) {
+    .superman-credit {
+        font-size: 12px;
+        padding: 8px 15px;
+    }
+}
+/* Comic Book Recommendation Slider */
+.recommendation-slider-container {
+    text-align: center;
+    margin-top: 30px;
+    background-color: rgba(0, 0, 0, 0.7); /* Dark background with transparency */
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Slight shadow for depth */
+    position: relative;
+    width: 90%; /* Slightly increased for better scaling */
+    margin-left: auto;
+    margin-right: auto;
+    overflow: hidden; /* Ensures only visible slides are shown */
+}
+
+h2 {
+    font-size: 28px;
+    color: #ffdc00; /* Superman yellow for the title */
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.slider {
+    display: flex;
+    transition: transform 0.5s ease-in-out; /* Smooth transition for shifting */
+}
+
+.slider-item {
+    flex: 0 0 calc(25% - 20px); /* Four items per row, including spacing */
+    margin: 0 10px;
+    text-align: center;
+    background-color: #00274d; /* Superman blue for the background of items */
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5); /* Depth effect */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.slider-item img {
+    width: 100%;
+    border-radius: 6px;
+    transition: transform 0.3s ease;
+}
+
+.slider-item p {
+    color: #ffdc00; /* Superman yellow for the text */
+    font-size: 16px;
+    margin-top: 10px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.slider-item:hover {
+    transform: scale(1.05); /* Enlarge on hover */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.6); /* Enhanced shadow on hover */
+}
+
+.slider-item:hover img {
+    transform: scale(1.1); /* Slight zoom effect on image hover */
+}
+
+/* Slider Controls */
+.slider-controls {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    transform: translateY(-50%);
+    z-index: 10;
+}
+
+.slider-controls button {
+    background-color: #d30707; /* Superman red */
+    color: white;
+    border: none;
+    padding: 15px;
+    font-size: 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    user-select: none; /* Prevent text selection on click */
+}
+
+.slider-controls .prev {
+    left: 10px;
+    position: absolute;
+}
+
+.slider-controls .next {
+    right: 10px;
+    position: absolute;
+}
+
+.slider-controls button:hover {
+    background-color: #a30606; /* Darker red for hover effect */
+    transform: scale(1.1); /* Slightly enlarge on hover */
+    box-shadow: 0 8px 14px rgba(0, 0, 0, 0.4); /* Enhanced shadow on hover */
+}
+
+.slider-controls button:active {
+    background-color: #850505; /* Dark red on click */
+    transform: scale(0.95); /* Shrink slightly on click */
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .slider-item {
+        flex: 0 0 calc(50% - 20px); /* Two items per row for smaller screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .slider-item {
+        flex: 0 0 calc(100% - 20px); /* One item per row for very small screens */
+    }
+}
+
