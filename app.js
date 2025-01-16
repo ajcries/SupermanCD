@@ -55,22 +55,22 @@ document.getElementById('play-audio').addEventListener('click', () => {
 });
 
 let currentSlide = 0;
-const itemsPerSlide = 4; // Number of items visible at once
+let itemsPerSlide = 4; // Default for larger screens
 const sliderItems = document.querySelectorAll('.slider-item');
 const slider = document.querySelector('.slider');
-const totalItems = sliderItems.length;
-
-// Calculate the total number of slides needed
-const maxSlide = Math.ceil(totalItems / itemsPerSlide) - 1;
-
-// Buttons
 const prevButton = document.querySelector('.prev');
 const nextButton = document.querySelector('.next');
+
+function calculateMaxSlide() {
+    return Math.ceil(sliderItems.length / itemsPerSlide) - 1;
+}
+
+let maxSlide = calculateMaxSlide();
 
 // Update the slider position
 function updateSliderPosition() {
     const itemWidth = sliderItems[0].offsetWidth + 16; // Include margin (adjust if needed)
-    const offset = -currentSlide * itemsPerSlide * itemWidth;
+    const offset = -currentSlide * itemWidth;
     slider.style.transform = `translateX(${offset}px)`;
     slider.style.transition = 'transform 0.3s ease-in-out'; // Smooth animation
 }
@@ -99,11 +99,22 @@ nextButton.addEventListener('click', () => {
     }
 });
 
-// Initialize slider
-function initSlider() {
+// Adjust slider for small screens
+function adjustForScreenSize() {
+    const screenWidth = window.innerWidth;
+    itemsPerSlide = screenWidth <= 768 ? 1 : 4; // 1 item for small screens, 4 for larger
+    maxSlide = calculateMaxSlide();
+    currentSlide = 0; // Reset to the first slide
     updateSliderPosition();
     updateButtonState();
 }
 
+// Initialize slider
+function initSlider() {
+    adjustForScreenSize(); // Ensure correct itemsPerSlide at load
+    window.addEventListener('resize', adjustForScreenSize); // Handle window resize
+}
+
 // Wait for DOM content to load and initialize
 document.addEventListener('DOMContentLoaded', initSlider);
+
