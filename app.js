@@ -127,3 +127,56 @@ function initSlider() {
 // Wait for DOM content to load and initialize
 document.addEventListener('DOMContentLoaded', initSlider);
 
+let currentSlide = 0;
+const itemsPerSlide = 4; // Number of items visible at once
+const sliderItems = document.querySelectorAll('.slider-item');
+const slider = document.querySelector('.slider');
+const totalItems = sliderItems.length;
+
+// Calculate the total number of slides needed
+const maxSlide = Math.ceil(totalItems / itemsPerSlide) - 1;
+
+// Buttons
+const prevButton = document.querySelector('.prev');
+const nextButton = document.querySelector('.next');
+
+// Update the slider position
+function updateSliderPosition() {
+    const itemWidth = sliderItems[0].offsetWidth + 16; // Include margin (adjust if needed)
+    const offset = -currentSlide * itemsPerSlide * itemWidth;
+    slider.style.transform = translateX(${offset}px);
+    slider.style.transition = 'transform 0.3s ease-in-out'; // Smooth animation
+}
+
+// Update the state of navigation buttons
+function updateButtonState() {
+    prevButton.disabled = currentSlide === 0;
+    nextButton.disabled = currentSlide === maxSlide;
+}
+
+// Move to the previous slide
+prevButton.addEventListener('click', () => {
+    if (currentSlide > 0) {
+        currentSlide--;
+        updateSliderPosition();
+        updateButtonState();
+    }
+});
+
+// Move to the next slide
+nextButton.addEventListener('click', () => {
+    if (currentSlide < maxSlide) {
+        currentSlide++;
+        updateSliderPosition();
+        updateButtonState();
+    }
+});
+
+// Initialize slider
+function initSlider() {
+    updateSliderPosition();
+    updateButtonState();
+}
+
+// Wait for DOM content to load and initialize
+document.addEventListener('DOMContentLoaded', initSlider);
