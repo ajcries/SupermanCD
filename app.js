@@ -61,16 +61,17 @@ const slider = document.querySelector('.slider');
 const prevButton = document.querySelector('.prev');
 const nextButton = document.querySelector('.next');
 
+let maxSlide = calculateMaxSlide();
+
+// Function to calculate the total number of slides
 function calculateMaxSlide() {
     return Math.ceil(sliderItems.length / itemsPerSlide) - 1;
 }
 
-let maxSlide = calculateMaxSlide();
-
 // Update the slider position
 function updateSliderPosition() {
     const itemWidth = sliderItems[0].offsetWidth + 16; // Include margin (adjust if needed)
-    const offset = -currentSlide * itemWidth;
+    const offset = -currentSlide * itemsPerSlide * itemWidth;
     slider.style.transform = `translateX(${offset}px)`;
     slider.style.transition = 'transform 0.3s ease-in-out'; // Smooth animation
 }
@@ -99,14 +100,22 @@ nextButton.addEventListener('click', () => {
     }
 });
 
-// Adjust slider for small screens
+// Adjust slider for small screens without affecting large screens
 function adjustForScreenSize() {
     const screenWidth = window.innerWidth;
-    itemsPerSlide = screenWidth <= 768 ? 1 : 4; // 1 item for small screens, 4 for larger
-    maxSlide = calculateMaxSlide();
-    currentSlide = 0; // Reset to the first slide
-    updateSliderPosition();
-    updateButtonState();
+    const isSmallScreen = screenWidth <= 768;
+
+    // Set itemsPerSlide based on screen size
+    const newItemsPerSlide = isSmallScreen ? 1 : 4;
+
+    // Update only if itemsPerSlide has changed
+    if (newItemsPerSlide !== itemsPerSlide) {
+        itemsPerSlide = newItemsPerSlide;
+        maxSlide = calculateMaxSlide();
+        currentSlide = 0; // Reset to the first slide
+        updateSliderPosition();
+        updateButtonState();
+    }
 }
 
 // Initialize slider
